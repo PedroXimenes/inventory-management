@@ -1,7 +1,10 @@
 package models
 
+import "gorm.io/gorm"
+
 type Warehouses struct {
-	Id       int    `json:"id" gorm:"primaryKey"`
+	gorm.Model
+
 	Name     string `json:"name"`
 	Location string `json:"location"`
 }

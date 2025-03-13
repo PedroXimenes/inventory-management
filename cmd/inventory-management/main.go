@@ -1,6 +1,7 @@
 package main
 
 import (
+	"inventory-management/internal/db"
 	"inventory-management/internal/router"
 	"log"
 
@@ -10,10 +11,11 @@ import (
 func main() {
 
 	app := fiber.New()
-	router.Router(app)
+	db := db.Init()
+	router.Router(app, db)
 
-	err := app.Listen(":8080")
+	err := app.Listen(":9000")
 	if err != nil {
-		log.Fatalf("Could not start server at port: %s\nError: %s", "8080", err.Error())
+		log.Fatalf("Could not start server at port: %s\nError: %s", ":9000", err.Error())
 	}
 }

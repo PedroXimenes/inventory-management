@@ -1,8 +1,15 @@
 package router
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"inventory-management/internal/handlers"
 
-func Router(app *fiber.App) {
+	"github.com/gofiber/fiber/v2"
+	"gorm.io/gorm"
+)
 
-	// app.Get("/users")
+func Router(app *fiber.App, db *gorm.DB) {
+
+	h := handlers.New(db)
+
+	app.Post("/warehouse", h.AddWarehouse)
 }

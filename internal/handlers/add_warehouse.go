@@ -18,13 +18,11 @@ func (h handler) AddWarehouse(c *fiber.Ctx) error {
 		return c.Status(http.StatusInternalServerError).SendString("Could not decode request body")
 	}
 
-	fmt.Println(warehouse)
-
 	result := h.DB.Create(&warehouse)
 	if result.Error != nil {
 		fmt.Printf("Unable to create new record: %v\n", err)
+		return c.Status(http.StatusInternalServerError).SendString("Unable to create new record")
 	}
-	fmt.Printf("result: %#v\n", result)
 
-	return c.Status(http.StatusCreated).SendString("criou")
+	return c.Status(http.StatusCreated).SendString("Created")
 }

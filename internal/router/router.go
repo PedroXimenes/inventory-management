@@ -11,5 +11,8 @@ func Router(app *fiber.App, db *gorm.DB) {
 
 	h := handlers.New(db)
 
-	app.Post("/warehouse", h.AddWarehouse)
+	app.Get("/warehouses", h.ListWarehouse)
+	app.Get("/warehouses/:id", h.GetWarehouse)
+	app.Delete("/warehouses/:id", h.DeleteWarehouse)
+	app.Post("/warehouses", h.AddWarehouse)
 }
